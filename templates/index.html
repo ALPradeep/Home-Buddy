@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <title>Home Buddy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" /*crossorigin="anonymous"*/>-->
+
+    <style>
+      /*body {
+  font-family: Georgia, serif;
+}*/
+body {
+      background-image: url('https://www.canva.com/design/DAFjPbW5d3A/pt9jQgXI4PWsXehs1gX2eA/view?utm_content=DAFjPbW5d3A&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink');
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+      .bd-placeholder-img {
+        
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        
+      }
+      #left-half {
+        width: 100%;
+        float: left;
+        padding: 10px;
+        box-sizing: border-box;
+        font-family: Candara, sans-serif;
+        text-align: justify;
+      }
+      
+      #left-half p {
+        text-align: justify;
+      }
+
+    html,
+    body,
+    header,
+    .view {
+      height: 100%;
+    }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      #heading {
+        position:relative;
+        top: -100px;
+        right: -50px;
+        font-size: 50px;
+
+      }
+      #quote {
+        position:relative;
+        top: -60px;
+        right: -50px;
+        /*left: 400px;*/
+      }
+      #bot {
+        position:relative;
+        top: -150px;
+        right: -700px;
+        font-size: 100px;
+        /*left: 400px;*/
+      }
+  df-messenger {
+   --df-messenger-bot-message: #878fac;
+   --df-messenger-button-titlebar-color: #050505;
+   --df-messenger-chat-background-color: #fafafa;
+   --df-messenger-font-color: white;
+   --df-messenger-send-icon: #878fac;
+   --df-messenger-user-message: #4b4a48;
+  }
+  #image {
+        position:relative;
+        bottom: 395px;
+        right: -500px;
+      }
+      #grad1 {
+  height: 0px;
+  background-image: linear-gradient(to bottom right, rgba(255, 101, 101, 0), rgb(186, 154, 154),  rgb(163, 145, 152));
+}
+    </style>
+</head>
+<body class="bg-light" id = "grad1"; style="background-repeat: no-repeat; background-size: cover; background-position: top center;   background-attachment: fixed;">
+  <div class="mx-auto" style="width: 1000px;margin-top: 10% !important;">
+    <div class="container">
+      <div class="py-5">
+        <div id="left-half">
+          <div class="row">
+            <div class="col-md" id="heading"><h1 align="left"><FONT COLOR="#C0392B">Home Buddy🤖</h1></div>
+          </div>
+          <div class="row">
+            <div class="col-sm" id="bot"><h3 align="left"><FONT COLOR="#4F4F4F"></h3></div>
+          </div>
+          <div class="row">
+            <div class="col-sm" id="quote"><h2 align="left"><FONT COLOR="#808080">Find a more precise Rental match for your preferences.</h2></div>
+          </div>
+          <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+          <df-messenger
+            intent="WELCOME"
+            chat-title="Home Buddy"
+            agent-id="9b3d5d31-f5fd-4d1b-ad3b-f15c871498a0"
+            session-id="chatsession"
+            language-code="en">
+          </df-messenger>
+          <script>
+            const dfMessenger = document.querySelector('df-messenger');
+            // const xhr = new XMLHttpRequest();
+            dfMessenger.addEventListener('df-response-received', function (event) {
+              console.log(event);
+              if (event.detail.response) {
+                data = event.detail.response;
+                console.log(data);
+                //now do something with the data JSON object
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/message');
+                //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                //xhr.send(JSON.stringify({message: messages}));
+                //xhr.send(JSON.stringify({message: response}));
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.send(JSON.stringify(data));
+                // get the response from the server
+                xhr.onreadystatechange = function() {
+                // dfMessenger.addEventListener('df-messenger-loaded', function (event) {
+                if (xhr.readyState == 4 && xhr.status == 200 && data.queryResult.fulfillmentText == "Okay Please wait till I process your request") {
+                  // const payload = JSON.parse(xhr.responseText);
+                  // const payload = xhr.responseText;
+                  const respon = JSON.parse(xhr.response);
+                  console.log(respon);
+                  console.log(respon.Sug1);
+                  console.log(respon.Sug2); 
+                  console.log(respon.Sug3); 
+                  //dfMessenger.renderCustomText('Custom text');
+                  const payload = [
+                  {
+                    "type": "button",
+                    "icon": {
+                      "type": "home",
+                      "color": "#FF9800"
+                    },
+                    "text": "Suggestion 1",
+                    "link": respon.Sug1,
+                
+                  },
+                  {
+                    "type": "button",
+                    "icon": {
+                      "type": "home",
+                      "color": "#FF9800"
+                    },
+                    "text": "Suggestion 2",
+                    "link": respon.Sug2,
+                
+                  },
+                  {
+                    "type": "button",
+                    "icon": {
+                      "type": "home",
+                      "color": "#FF9800"
+                    },
+                    "text": "Suggestion 3",
+                    "link": respon.Sug3,
+                
+                  }
+                  ];                
+                console.log(payload);
+                dfMessenger.renderCustomCard(payload);
+                }
+              }
+              }              
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</html>

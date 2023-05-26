@@ -1,0 +1,10 @@
+torch
+pandas
+openpyxl
+numpy
+tagui
+flask
+requests
+transformers
+scikit-learn
+tensorflow
