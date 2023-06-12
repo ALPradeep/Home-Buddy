@@ -26,7 +26,7 @@ As such, our project applied Natural Language Processing (NLP) methods to speed 
 
 | Official Full Name      | Student ID (MTech Applicable) | Email (Optional)   |
 | ----------------------  | ----------------------------- | ------------------ |
-| Pradeep Kumar Arumugam  | A0261606J                     | e0983000@u.nus.edu |
+| Pradeep Kumar Arumugam  | A0261606J                     | pradeepkumaravsp@gmail.com |
 | Zhao Lutong             | A0249279L                     |                    |
 | Jonathan Lim Ching Loong| A0261707E                     |                    |
 
